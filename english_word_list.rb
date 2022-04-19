@@ -28,8 +28,8 @@ class EnglishWordList
       bot.listen do |message|
         break(@stop = 1) if message.text == '/stop'
 
-        output(bot, message.chat.id, result_translation(message.text, w_hash[:eng_word]))
-        break if message.text == w_hash[:eng_word]
+        output(bot, message.chat.id, result_translation(message.text.downcase, w_hash[:eng_word]))
+        break if message.text.downcase == w_hash[:eng_word]
       end
     end
   end
