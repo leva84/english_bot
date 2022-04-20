@@ -15,7 +15,17 @@ class EnglishWordList
 
   def description
     <<~HEREDOC
-      'программа выводит английские слова и их перевод для изучения'
+      Бот выводит варианты перевода слова на русском языке.
+      Необходимо ввести слово на английском, после чего бот
+      проверит введенный вариант и выведет результат.
+
+      Если вы затрудняетесь ответить то отправте боту '/?' .
+      Бот подскажет вам верный вариант и вы сможете отправить
+      его в своем собщении(будет способствовать запоминанию слова).
+      После чего бот покажет вам следующие слова для перевода.
+
+      Для остановки перевода слов введите '/stop' .
+      Для повторного запуска перевода слов введите '/start' .
     HEREDOC
   end
 
@@ -23,6 +33,7 @@ class EnglishWordList
     words_arr.each do |w_hash|
       break(output(bot, message_id, 'Good Bye!)')) if @stop == 1
 
+      output(bot, message_id, 'Введите слово на английском :')
       output(bot, message_id, w_hash[:translation])
 
       bot.listen do |message|
@@ -37,7 +48,9 @@ class EnglishWordList
   private
 
   def result_translation(input, eng_word)
-    input == eng_word ? 'Yes !)' : "It is not right, that is right: '' #{eng_word} ''"
+    return "Is right: '' #{eng_word} ''" if input == '/?'
+    return 'It is not right' unless input == eng_word
+    return 'Yes !)' if input == eng_word
   end
 
   def output(bot, message_id, text)
