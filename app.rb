@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'telegram/bot'
 require_relative 'english_word_list'
 
@@ -9,7 +11,7 @@ Telegram::Bot::Client.run(token) do |bot|
     when '/start'
       word_list = EnglishWordList.new
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
-      bot.api.send_message(chat_id: message.chat.id, text: "#{word_list.description}")
+      bot.api.send_message(chat_id: message.chat.id, text: word_list.description.to_s)
       word_list.call(bot, message.chat.id)
     when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")

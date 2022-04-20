@@ -3,7 +3,6 @@
 require 'telegram/bot'
 
 class EnglishWordList
-
   attr_reader :words_arr
 
   def initialize
@@ -54,6 +53,6 @@ class EnglishWordList
   end
 
   def output(bot, message_id, text)
-    bot.api.send_message(chat_id: message_id, text: "#{text}")
+    bot.api.send_message(chat_id: message_id, text: text.to_s)
   end
 end
