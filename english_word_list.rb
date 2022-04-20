@@ -18,7 +18,7 @@ class EnglishWordList
       Необходимо ввести слово на английском, после чего бот
       проверит введенный вариант и выведет результат.
 
-      Если вы затрудняетесь ответить то отправте боту '/?' .
+      Если вы затрудняетесь ответить то отправте боту '/help' .
       Бот подскажет вам верный вариант и вы сможете отправить
       его в своем собщении(будет способствовать запоминанию слова).
       После чего бот покажет вам следующие слова для перевода.
@@ -47,7 +47,7 @@ class EnglishWordList
   private
 
   def result_translation(input, eng_word)
-    return "Is right: '' #{eng_word} ''" if input == '/?'
+    return "Is right: '' #{eng_word} ''" if input == '/help'
     return 'It is not right' unless input == eng_word
     return 'Yes !)' if input == eng_word
   end
